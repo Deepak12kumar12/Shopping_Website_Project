@@ -1,5 +1,7 @@
 <?php
 include 'auth_admin.php';
+include 'db.php';
+include 'navbar_labels.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -203,15 +205,15 @@ text-shadow:
             <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
                 <div class="px-5">
                     <!-- <a href="#"><img src="../image/s1.avif" alt="" class="admin_image"></a> -->
-                    <p class="text-light text-center">Smartphone</p>
+                    <p class="text-light text-center"><?= htmlspecialchars($navbarLabels['mobiles'] ?? 'Mobiles'); ?></p>
                 </div>
                 <!-- button*10>a.nav-link.text-light.bg-info.my-1 -->
                 <div class="button text-center">
-                <button><a href="home_add_products.php" class="nav-link text-light bg-info my-1">Home Products</a></button>
-            <button><a href="apple_add_products.php" class="nav-link text-light bg-info my-1">Apple Products</a></button>
-            <button><a href="samsung_add_products.php" class="nav-link text-light bg-info my-1">Samsung Products</a></button>
-            <button><a href="xiaomi_add_products.php" class="nav-link text-light bg-info my-1">Xiaomi Products</a></button>
-            <button><a href="oneplus_add_products.php" class="nav-link text-light bg-info my-1">OnePlus Products</a></button>
+                <button><a href="home_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['home'] ?? 'Home'); ?> Products</a></button>
+            <button><a href="apple_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['apple'] ?? 'Apple'); ?> Products</a></button>
+            <button><a href="samsung_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['samsung'] ?? 'Samsung'); ?> Products</a></button>
+            <button><a href="xiaomi_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['xiaomi'] ?? 'Xiaomi'); ?> Products</a></button>
+            <button><a href="oneplus_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['oneplus'] ?? 'OnePlus'); ?> Products</a></button>
            
                 </div>
             </div>
@@ -220,13 +222,13 @@ text-shadow:
           <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
                 <div class="px-5">
                     <!-- <a href="#"><img src="../image/s1.avif" alt="" class="admin_image"></a> -->
-                    <p class="text-light text-center">Laptops</p>
+                    <p class="text-light text-center"><?= htmlspecialchars($navbarLabels['laptops'] ?? 'Laptops'); ?></p>
                 </div>
                 <!-- button*10>a.nav-link.text-light.bg-info.my-1 -->
                 <div class="button text-center">
-            <button><a href="hp_add_products.php" class="nav-link text-light bg-info my-1">HP Products</a></button>
-            <button><a href="dell_add_products.php" class="nav-link text-light bg-info my-1">DELL Products</a></button>
-            <button><a href="macbook_add_products.php" class="nav-link text-light bg-info my-1">MacBook Products</a></button>
+            <button><a href="hp_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['hp'] ?? 'HP'); ?> Products</a></button>
+            <button><a href="dell_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['dell'] ?? 'DELL'); ?> Products</a></button>
+            <button><a href="macbook_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['macbook'] ?? 'MacBook'); ?> Products</a></button>
                 </div>
             </div>
           </div><br>
@@ -234,13 +236,13 @@ text-shadow:
 <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
                 <div class="px-5">
                     <!-- <a href="#"><img src="../image/s1.avif" alt="" class="admin_image"></a> -->
-                    <p class="text-light text-center">Headphones</p>
+                    <p class="text-light text-center"><?= htmlspecialchars($navbarLabels['headphones'] ?? 'Headphones'); ?></p>
                 </div>
                 <!-- button*10>a.nav-link.text-light.bg-info.my-1 -->
                 <div class="button text-center">
-            <button><a href="boat_add_products.php" class="nav-link text-light bg-info my-1">boAT Products</a></button>
-            <button><a href="oneplusbud_add_products.php" class="nav-link text-light bg-info my-1">OnePlus Products</a></button>
-            <button><a href="boult_add_products.php" class="nav-link text-light bg-info my-1">Boult Products</a></button>
+            <button><a href="boat_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['boat'] ?? 'boAT'); ?> Products</a></button>
+            <button><a href="oneplusbud_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['oneplusbud'] ?? 'OnePlus'); ?> Products</a></button>
+            <button><a href="boult_add_products.php" class="nav-link text-light bg-info my-1"><?= htmlspecialchars($navbarLabels['boult'] ?? 'Boult'); ?> Products</a></button>
                 </div>
             </div>
           </div>

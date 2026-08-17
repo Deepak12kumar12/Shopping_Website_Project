@@ -1,6 +1,7 @@
 <?php
 include 'auth_admin.php';
 include 'db.php';
+include 'navbar_labels.php';
 
 $message = '';
 
@@ -267,7 +268,7 @@ button, input, textarea {
 <body>
 <div class="container d-flex justify-content-center align-items-start pt-5 pb-5">
   <div class="card p-4 w-100  form-wrapper" style="max-width: 800px;">
-  <h3 class="text-center mb-4 form-label">Add boAt Product</h3>
+  <h3 class="text-center mb-4 form-label">Add <?= htmlspecialchars($navbarLabels['boat'] ?? 'boAt'); ?> Product</h3>
     <?php echo $message; ?>
     <form method="POST" enctype="multipart/form-data">
       <div class="mb-3">

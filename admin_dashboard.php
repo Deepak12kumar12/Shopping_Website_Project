@@ -3,6 +3,56 @@ include 'auth_admin.php';
 include 'db.php';
 include 'user_profile_data.php';
 
+/* 🔥 DELETE SELECTED ORDERS */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected_orders'])) {
+
+    if (!empty($_POST['selected_orders'])) {
+
+        $ids = $_POST['selected_orders'];
+
+        $safeIds = array_map('intval', $ids);
+
+        $idList = implode(',', $safeIds);
+
+        // Delete order items first
+        $conn->query("
+            DELETE FROM order_items
+            WHERE order_id IN ($idList)
+        ");
+
+        // Delete orders
+        $conn->query("
+            DELETE FROM orders
+            WHERE id IN ($idList)
+        ");
+
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+/* 🔥 DELETE SELECTED COMPLAINTS */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_selected_complaints'])) {
+
+    if (!empty($_POST['selected_complaints'])) {
+
+        $ids = $_POST['selected_complaints'];
+
+        $safeIds = array_map('intval', $ids);
+
+        $idList = implode(',', $safeIds);
+
+        $conn->query("
+            DELETE FROM complaints
+            WHERE id IN ($idList)
+        ");
+
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
 /* ---------- COUNTS ---------- */
 $totalUsers = 0;
 $totalOrders = 0;
@@ -495,6 +545,44 @@ font-size:13px;
   box-shadow: 0 0 20px rgba(0,198,255,0.7);
   font-weight: bold;
 }
+/* 🔥 Orders Checkbox Size */
+#selectAllOrders,
+.order-checkbox,
+#selectAllComplaints,
+.complaint-checkbox{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+/* 🔥 Checkbox column fix */
+.table th:first-child,
+.table td:first-child{
+    width: 60px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 🔥 Checkbox size */
+#selectAllOrders,
+.order-checkbox,
+#selectAllComplaints,
+.complaint-checkbox{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+/* 🔥 Header row alignment */
+.table thead th{
+    vertical-align: middle;
+}
+.order-status-box form{
+    flex-wrap: nowrap !important;
+}
+
+.order-status-box .form-select{
+    width: 160px !important;
+}
   </style>
 </head>
 <body>
@@ -556,6 +644,17 @@ font-size:13px;
 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
   🗑️ Delete Users
 </button>
+<button
+  class="btn btn-primary"
+  onclick="window.location.href='home.php'">
+  🎨 Customize Site
+</button>
+<button
+   class="btn btn-primary btn-sm px-3 py-1"
+  data-bs-toggle="modal"
+  data-bs-target="#bgModal">
+  🖼️ Change Background Image 
+</button>
 </div>
 
 <?php endif; ?>
@@ -602,13 +701,23 @@ font-size:13px;
   <!-- Recent Orders -->
   <div class="card card-custom p-3 mb-4 shadow-sm">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h5 class="m-0">Recent Orders</h5>
-    </div>
+  <h5 class="m-0">Recent Orders</h5>
+  <button
+   type="button"
+  id="deleteSelectedBtn"
+  class="btn btn-danger btn-sm">
+    🗑️ Delete Selected Orders
+  </button>
+</div>
 
     <div class="table-responsive">
+    
       <table class="table table-bordered table-hover align-middle mb-0 ">
         <thead class="table-light">
           <tr>
+             <th>
+              <input type="checkbox" id="selectAllOrders">
+            </th>
             <th>No.</th>
             <th>Products</th>
             <th>User</th>
@@ -624,12 +733,22 @@ font-size:13px;
         <tbody>
         <?php if (count($recentOrders) === 0): ?>
           <tr>
-            <td colspan="9" class="text-center text-muted">No orders found.</td>
+            <td colspan="10" class="text-center text-muted">No orders found.</td>
           </tr>
         <?php else: ?>
           <?php $i = 1; foreach ($recentOrders as $o): ?>
             <tr>
-              <td><span class="index-box"><?= $i++; ?></span></td>
+  <td>
+    <input
+      type="checkbox"
+      name="selected_orders[]"
+      value="<?= (int)$o['id']; ?>"
+      class="order-checkbox"
+    >
+  </td>
+  <td>
+    <span class="index-box"><?= $i++; ?></span>
+  </td>
               <td>
                 <span class="badge bg-dark">
                   <?= (int)$o['product_count']; ?> item<?= ((int)$o['product_count'] !== 1 ? 's' : ''); ?>
@@ -648,24 +767,29 @@ font-size:13px;
               </td>
 
               <td style="min-width:180px;">
-                <form method="POST" action="update_order_status.php" class="d-flex gap-2">
-                  <input type="hidden" name="order_id" value="<?= (int)$o['id']; ?>">
+  <div class="d-flex gap-2 align-items-center order-status-box">
+    <form method="POST" action="update_order_status.php" class="d-flex gap-2 align-items-center m-0">
+      <input type="hidden" name="order_id" value="<?= (int)$o['id']; ?>">
+      <select name="status" class="form-select form-select-sm">
 
-                  <select name="status" class="form-select form-select-sm">
-                    <?php
-                    $current = (string)($o['status'] ?? 'Pending');
-                    $opts = ['Pending', 'Shipped', 'Delivered', 'Cancelled'];
-                    foreach ($opts as $st):
-                    ?>
-                      <option value="<?= e($st); ?>" <?= ($current === $st ? 'selected' : ''); ?>>
-                        <?= e($st); ?>
-                      </option>
-                    <?php endforeach; ?>
-                  </select>
+        <?php
+        $current = (string)($o['status'] ?? 'Pending');
+        $opts = ['Pending', 'Shipped', 'Delivered', 'Cancelled'];
 
-                  <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                </form>
-              </td>
+        foreach ($opts as $st):
+        ?>
+
+        <option value="<?= e($st); ?>" <?= ($current === $st ? 'selected' : ''); ?>>
+          <?= e($st); ?>
+        </option>
+        <?php endforeach; ?>
+      </select>
+      <button type="submit" class="btn btn-sm btn-primary">
+        Update
+      </button>
+    </form>
+  </div>
+</td>
 
               <td><?= e($o['created_at']); ?></td>
 
@@ -685,19 +809,28 @@ font-size:13px;
         <?php endif; ?>
         </tbody>
       </table>
-    </div>
+</div>
   </div>
 
   <!-- Recent Complaints -->
   <div class="card card-custom p-3 shadow-sm">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h5 class="m-0">Recent Complaints</h5>
-    </div>
+  <h5 class="m-0">Recent Complaints</h5>
+  <button
+    type="button"
+    id="deleteSelectedComplaintsBtn"
+    class="btn btn-danger btn-sm">
+    🗑️ Delete Selected Complaints
+  </button>
+</div>
 
     <div class="table-responsive">
       <table class="table table-bordered table-hover align-middle mb-0 complaints-table">
         <thead class="table-light">
           <tr>
+            <th>
+            <input type="checkbox" id="selectAllComplaints">
+            </th>
             <th>No.</th>
             <th class="hide-id">#</th>
             <th>User</th>
@@ -710,12 +843,21 @@ font-size:13px;
         <tbody>
         <?php if (count($recentComplaints) === 0): ?>
           <tr>
-            <td colspan="6" class="text-center text-muted">No complaints found.</td>
+            <td colspan="8" class="text-center text-muted">No complaints found.</td>
           </tr>
         <?php else: ?>
           <?php $j = 1; foreach ($recentComplaints as $c): ?>
             <tr>
-              <td><span class="index-box"><?= $j++; ?></span></td>
+               <td>
+                <input
+                type="checkbox"
+                class="complaint-checkbox"
+                value="<?= (int)$c['id']; ?>">
+                </td>
+
+                <td>
+                <span class="index-box"><?= $j++; ?></span>
+                </td>
               <td class="hide-id"><?= e($c['id']); ?></td>
               <td><?= e(trim(($c['first_name'] ?? 'Guest') . ' ' . ($c['last_name'] ?? ''))); ?></td>
               <td><?= e($c['email'] ?? ''); ?></td>
@@ -942,5 +1084,219 @@ function togglePassword(id, el) {
     </div>
   </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Select all
+    const selectAll = document.getElementById("selectAllOrders");
+
+    if (selectAll) {
+
+        selectAll.addEventListener("change", function () {
+
+            let checkboxes = document.querySelectorAll(".order-checkbox");
+
+            checkboxes.forEach(function (checkbox) {
+
+                checkbox.checked = selectAll.checked;
+
+            });
+
+        });
+
+    }
+
+    // Delete selected orders
+    const deleteBtn = document.getElementById("deleteSelectedBtn");
+
+    if (deleteBtn) {
+
+        deleteBtn.addEventListener("click", function () {
+
+            let selected = [];
+
+            document.querySelectorAll(".order-checkbox:checked")
+            .forEach(function (checkbox) {
+
+                selected.push(checkbox.value);
+
+            });
+
+            if (selected.length === 0) {
+
+                alert("Please select at least one order");
+                return;
+
+            }
+
+            // Create form dynamically
+            let form = document.createElement("form");
+
+            form.method = "POST";
+
+            let hidden = document.createElement("input");
+
+            hidden.type = "hidden";
+            hidden.name = "delete_selected_orders";
+            hidden.value = "1";
+
+            form.appendChild(hidden);
+
+            selected.forEach(function (id) {
+
+                let input = document.createElement("input");
+
+                input.type = "hidden";
+                input.name = "selected_orders[]";
+                input.value = id;
+
+                form.appendChild(input);
+
+            });
+
+            document.body.appendChild(form);
+
+            form.submit();
+
+        });
+
+    }
+
+});
+</script>
+<script>
+  // 🔥 Select All Complaints
+const selectAllComplaints = document.getElementById("selectAllComplaints");
+
+if (selectAllComplaints) {
+
+    selectAllComplaints.addEventListener("change", function () {
+
+        let checkboxes = document.querySelectorAll(".complaint-checkbox");
+
+        checkboxes.forEach(function (checkbox) {
+
+            checkbox.checked = selectAllComplaints.checked;
+
+        });
+
+    });
+
+}
+
+// 🔥 Delete Selected Complaints
+const deleteComplaintsBtn = document.getElementById("deleteSelectedComplaintsBtn");
+
+if (deleteComplaintsBtn) {
+
+    deleteComplaintsBtn.addEventListener("click", function () {
+
+        let selected = [];
+
+        document.querySelectorAll(".complaint-checkbox:checked")
+        .forEach(function (checkbox) {
+
+            selected.push(checkbox.value);
+
+        });
+
+        if (selected.length === 0) {
+
+            alert("Please select at least one complaint");
+            return;
+
+        }
+
+        let form = document.createElement("form");
+
+        form.method = "POST";
+
+        let hidden = document.createElement("input");
+
+        hidden.type = "hidden";
+        hidden.name = "delete_selected_complaints";
+        hidden.value = "1";
+
+        form.appendChild(hidden);
+
+        selected.forEach(function (id) {
+
+            let input = document.createElement("input");
+
+            input.type = "hidden";
+            input.name = "selected_complaints[]";
+            input.value = id;
+
+            form.appendChild(input);
+
+        });
+
+        document.body.appendChild(form);
+
+        form.submit();
+
+    });
+
+}
+</script>
+<!-- 🔥 BACKGROUND MODAL -->
+<div class="modal fade" id="bgModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Change Background
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+        </button>
+      </div>
+      <form
+        method="POST"
+        action="save_background.php"
+        enctype="multipart/form-data">
+        <div class="modal-body">
+          <input
+            type="file"
+            name="background_image"
+            class="form-control"
+            accept="image/*">
+            <input
+  type="hidden"
+  name="reset_default"
+  id="reset_default"
+  value="0">
+        </div>
+        <div class="modal-footer">
+          <button
+  type="button"
+  class="btn btn-secondary"
+  id="resetBackgroundBtn">
+  🔄 Reset Default
+  </button>
+          <button
+            type="submit"
+            class="btn btn-success">
+            💾 Save Background
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <script>
+
+document.getElementById("resetBackgroundBtn")
+.addEventListener("click", function(){
+
+    document.getElementById("reset_default").value = "1";
+
+    alert("Default background selected. Click Save Background.");
+
+});
+
+</script>
 </body>
 </html>

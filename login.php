@@ -391,7 +391,7 @@ body {
           <?php endif; ?>
       <form action="login.php" method="POST">
         <div class="text-center mb-3">
-          <p  class="login-title">Login </p>
+          <p  class="login-title">Login</p>
         </div>
 
         <!-- <p class="text-center">or:</p> -->

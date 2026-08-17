@@ -1,6 +1,9 @@
 <?php
 session_start();
 include 'db.php';
+include 'navbar_labels.php';
+include 'user_profile_data.php';
+
 $delete_mode = (
     isset($_GET['delete_mode']) &&
     $_GET['delete_mode'] == '1' &&
@@ -83,6 +86,14 @@ if ($user_id_for_cart > 0 && isset($_SESSION['cart'][$user_id_for_cart]) && is_a
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
    <style>
+body{
+    background-image:url('uploads/<?= htmlspecialchars($homeBg); ?>');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+
   @media (max-width: 991px){
 
 .products-section_2nav{
@@ -123,12 +134,6 @@ body {
     margin: auto;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
-
-    background-image: url("https://4kwallpapers.com/images/wallpapers/thick-forest-3840x2160-14776.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .dropdown-menu-custom .dropdown-item,
@@ -717,13 +722,13 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Mobiles
+          <?= htmlspecialchars($navbarLabels['mobiles'] ?? 'Mobiles'); ?>
         </a>
         <ul class="dropdown-menu dropdown-glass">
-          <li><a href="<?php echo $delete_mode ? 'apple.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" >Apple</a></li>
-          <li><a href="<?php echo $delete_mode ? 'samsung.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" >Samsung</a></li>
-          <li><a href="<?php echo $delete_mode ? 'xiaomi.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" >Xiaomi</a></li>
-          <li><a href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" >OnePlus</a></li>
+          <li><a href="<?php echo $delete_mode ? 'apple.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" ><?= htmlspecialchars($navbarLabels['apple'] ?? 'Apple'); ?></a></li>
+          <li><a href="<?php echo $delete_mode ? 'samsung.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" ><?= htmlspecialchars($navbarLabels['samsung'] ?? 'Samsung'); ?></a></li>
+          <li><a href="<?php echo $delete_mode ? 'xiaomi.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" ><?= htmlspecialchars($navbarLabels['xiaomi'] ?? 'Xiaomi'); ?></a></li>
+          <li><a href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'login.php'; ?>" class="dropdown-item nav-glow" ><?= htmlspecialchars($navbarLabels['oneplus'] ?? 'OnePlus'); ?></a></li>
           
         </ul>
       </li>
@@ -734,12 +739,12 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Laptops
+          <?= htmlspecialchars($navbarLabels['laptops'] ?? 'Laptops'); ?>
         </a>
         <ul class="dropdown-menu dropdown-glass">
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'hp.php?delete_mode=1' : 'login.php'; ?>">HP</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'dell.php?delete_mode=1' : 'login.php'; ?>">Dell</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'macbook.php?delete_mode=1' : 'login.php'; ?>">MacBook</a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'hp.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['hp'] ?? 'HP'); ?></a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'dell.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['dell'] ?? 'Dell'); ?></a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'macbook.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['macbook'] ?? 'MacBook'); ?></a></li>
       
         </ul>
       </li>
@@ -750,12 +755,12 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Headphones
+          <?= htmlspecialchars($navbarLabels['headphones'] ?? 'Headphones'); ?>
         </a>
         <ul class="dropdown-menu dropdown-glass">
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boat.php?delete_mode=1' : 'login.php'; ?>">boAT</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'login.php'; ?>">OnePlus</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boult.php?delete_mode=1' : 'login.php'; ?>">Boult</a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boat.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['boat'] ?? 'boAT'); ?></a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['oneplusbud'] ?? 'OnePlus'); ?></a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boult.php?delete_mode=1' : 'login.php'; ?>"><?= htmlspecialchars($navbarLabels['boult'] ?? 'Boult'); ?></a></li>
       
         </ul>
       </li>

@@ -2,6 +2,19 @@
 session_start();
 include 'db.php';
 include 'user_profile_data.php';
+
+/* 🔥 NAVBAR LABELS */
+$navbarLabels = [];
+
+$res = $conn->query("SELECT label_key, label_value FROM navbar_labels");
+
+while ($row = $res->fetch_assoc()) {
+
+    $navbarLabels[$row['label_key']] = $row['label_value'];
+
+}
+$homeBg = $navbarLabels['home_bg'] ?? 'default-bg.jpg';
+
 $profile_image = "";
 $first_name = "";
 
@@ -99,6 +112,15 @@ if ($user_id_for_cart > 0 && isset($_SESSION['cart'][$user_id_for_cart]) && is_a
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
    
+    <style>
+body{
+    background-image:url('uploads/<?= htmlspecialchars($homeBg); ?>');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+</style>
 </head>
 <body>
     
@@ -154,6 +176,9 @@ document.addEventListener("DOMContentLoaded", function () {
 <?php endif; ?>
         <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
           <li class="nav-item"><a class="nav-link nav-glow" href="admin_dashboard.php">Admin</a></li>
+          <li class="nav-item">
+</li>
+
            <li class="nav-item">
           <a href="<?php echo $delete_mode ? 'home.php?delete_mode=1' : 'home.php'; ?>" class="nav-link nav-glow" >Home</a>
         </li>
@@ -342,14 +367,89 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Mobiles
+
+           <?= htmlspecialchars($navbarLabels['mobiles'] ?? 'Mobiles'); ?>
         </a>
+          <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  data-key="mobiles"
+  data-value="<?= htmlspecialchars($navbarLabels['mobiles'] ?? 'Mobiles'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+
         <ul class="dropdown-menu dropdown-glass">
-          <li><a href="<?php echo $delete_mode ? 'apple.php?delete_mode=1' : 'apple.php'; ?>" class="dropdown-item nav-glow" >Apple</a></li>
-          <li><a href="<?php echo $delete_mode ? 'samsung.php?delete_mode=1' : 'samsung.php'; ?>" class="dropdown-item nav-glow" >Samsung</a></li>
-          <li><a href="<?php echo $delete_mode ? 'xiaomi.php?delete_mode=1' : 'xiaomi.php'; ?>" class="dropdown-item nav-glow" >Xiaomi</a></li>
-          <li><a href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'oneplus.php'; ?>" class="dropdown-item nav-glow" >OnePlus</a></li>
-          
+          <li><a href="<?php echo $delete_mode ? 'apple.php?delete_mode=1' : 'apple.php'; ?>" class="dropdown-item nav-glow" >
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['apple'] ?? 'Apple'); ?>
+</span>
+            </a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="apple"
+  data-value="<?= htmlspecialchars($navbarLabels['apple'] ?? 'Apple'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+</li>
+          <li><a href="<?php echo $delete_mode ? 'samsung.php?delete_mode=1' : 'samsung.php'; ?>" class="dropdown-item nav-glow" >
+<div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['samsung'] ?? 'Samsung'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="samsung"
+  data-value="<?= htmlspecialchars($navbarLabels['samsung'] ?? 'Samsung'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+</li>
+          <li><a href="<?php echo $delete_mode ? 'xiaomi.php?delete_mode=1' : 'xiaomi.php'; ?>" class="dropdown-item nav-glow" >
+
+          <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['xiaomi'] ?? 'Xiaomi'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="xiaomi"
+  data-value="<?= htmlspecialchars($navbarLabels['xiaomi'] ?? 'Xiaomi'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+</li>
+          <li><a href="<?php echo $delete_mode ? 'oneplus.php?delete_mode=1' : 'oneplus.php'; ?>" class="dropdown-item nav-glow" >
+<div class="d-flex align-items-center justify-content-between gap-2">
+
+<span>
+<?= htmlspecialchars($navbarLabels['oneplus'] ?? 'OnePlus'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="oneplus"
+  data-value="<?= htmlspecialchars($navbarLabels['oneplus'] ?? 'OnePlus'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+</li> 
         </ul>
       </li>
 
@@ -359,12 +459,68 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Laptops
+           <?= htmlspecialchars($navbarLabels['laptops'] ?? 'Laptops'); ?>
         </a>
+          <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  data-key="laptops"
+  data-value="<?= htmlspecialchars($navbarLabels['laptops'] ?? 'Laptops'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
         <ul class="dropdown-menu dropdown-glass">
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'hp.php?delete_mode=1' : 'hp.php'; ?>">HP</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'dell.php?delete_mode=1' : 'dell.php'; ?>">Dell</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'macbook.php?delete_mode=1' : 'macbook.php'; ?>">MacBook</a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'hp.php?delete_mode=1' : 'hp.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['hp'] ?? 'HP'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="hp"
+  data-value="<?= htmlspecialchars($navbarLabels['hp'] ?? 'HP'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'dell.php?delete_mode=1' : 'dell.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['dell'] ?? 'Dell'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="dell"
+  data-value="<?= htmlspecialchars($navbarLabels['dell'] ?? 'Dell'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'macbook.php?delete_mode=1' : 'macbook.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['macbook'] ?? 'MacBook'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="macbook"
+  data-value="<?= htmlspecialchars($navbarLabels['macbook'] ?? 'MacBook'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
       
         </ul>
       </li>
@@ -375,12 +531,68 @@ if ($user_id && isset($_SESSION['cart'][$user_id])) {
            href="#"
            role="button"
            data-bs-toggle="dropdown">
-          Headphones
+          <?= htmlspecialchars($navbarLabels['headphones'] ?? 'Headphones'); ?>
         </a>
+          <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  data-key="headphones"
+  data-value="<?= htmlspecialchars($navbarLabels['headphones'] ?? 'Headphones'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
         <ul class="dropdown-menu dropdown-glass">
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boat.php?delete_mode=1' : 'boat.php'; ?>">boAT</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'oneplusbud.php?delete_mode=1' : 'oneplusbud.php'; ?>">OnePlus</a></li>
-          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boult.php?delete_mode=1' : 'boult.php'; ?>">Boult</a></li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boat.php?delete_mode=1' : 'boat.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['boat'] ?? 'boAT'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="boat"
+  data-value="<?= htmlspecialchars($navbarLabels['boat'] ?? 'boAT'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'oneplusbud.php?delete_mode=1' : 'oneplusbud.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['oneplusbud'] ?? 'OnePlus Bud'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="oneplusbud"
+  data-value="<?= htmlspecialchars($navbarLabels['oneplusbud'] ?? 'OnePlus Bud'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
+          <li><a class="dropdown-item nav-glow" href="<?php echo $delete_mode ? 'boult.php?delete_mode=1' : 'boult.php'; ?>">
+            <div class="d-flex align-items-center justify-content-between gap-2">
+<span>
+<?= htmlspecialchars($navbarLabels['boult'] ?? 'Boult'); ?>
+</span>
+</a>
+<?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+<button
+  class="btn btn-sm btn-warning edit-label-btn"
+  style="margin-right:12px;"
+  data-key="boult"
+  data-value="<?= htmlspecialchars($navbarLabels['boult'] ?? 'Boult'); ?>">
+  ✏️
+</button>
+<?php endif; ?>
+</div>
+          </li>
       
         </ul>
       </li>
@@ -570,6 +782,61 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+</script>
+
+  <!-- 🔥 EDIT NAVBAR LABEL MODAL -->
+   <div class="modal fade" id="editLabelModal" tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Navbar Text</h5>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal">
+        </button>
+      </div>
+      <form method="POST" action="save_navbar_label.php">
+        <div class="modal-body">
+          <input type="hidden" name="label_key" id="label_key">
+          <input
+            type="text"
+            name="label_value"
+            id="label_value"
+            class="form-control"
+            required>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">
+            💾 Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <script>
+  document.querySelectorAll(".edit-label-btn").forEach(function(btn){
+
+    btn.addEventListener("click", function(){
+
+        document.getElementById("label_key").value =
+            this.dataset.key;
+
+        document.getElementById("label_value").value =
+            this.dataset.value;
+
+        new bootstrap.Modal(
+            document.getElementById("editLabelModal")
+        ).show();
+
+    });
+
+});
 </script>
 </body>
 </html>

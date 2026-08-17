@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2026 at 05:53 AM
+-- Generation Time: May 29, 2026 at 09:35 AM
 -- Server version: 8.0.44
 -- PHP Version: 8.2.12
 
@@ -141,14 +141,8 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`id`, `user_id`, `name`, `email`, `subject`, `message`, `created_at`, `deleted_by_user`, `deleted_at`) VALUES
-(1, NULL, 'Deepak kumar', 'deepakkumar897986@gmail.com', 'good products', 'good products and nice products', '2025-06-27 04:53:02', 0, NULL),
-(2, NULL, 'Deepak kumar', 'deepakkumar897986@gmail.com', 'good products', 'dddd', '2025-06-28 05:19:56', 0, NULL),
-(3, NULL, 'Deepak kumar', 'deepakkumar897986@gmail.com', 'good products', 'dfff', '2025-06-28 05:50:52', 0, NULL),
-(4, NULL, 'kahsdha', 'lasijdiauojli@gmail.com', 'apouipoarjwepr', 'nkljdoeiqw983horiwe98rywohiuweyrwelrhowei', '2025-06-28 12:29:32', 0, NULL),
 (9, 39, 'user-2', 'user-2@gmail.com', 'this is user-2', 'this is user-2', '2026-03-02 05:22:22', 0, NULL),
-(11, NULL, 'het', 'user1@gmail.com', 'kahoia', 'i akllove tooyuo', '2026-03-06 17:59:15', 1, '2026-03-07 23:37:37'),
-(12, 40, 'user-3', 'user-3@gmail.com', 'this is user-3 testing', 'helllo user-3', '2026-03-14 07:30:59', 0, NULL),
-(14, 40, 'user-3', 'user-3@gmail.com', 'hello', 'dhhe;dsaf', '2026-03-19 09:30:00', 0, NULL);
+(11, NULL, 'het', 'user1@gmail.com', 'kahoia', 'i akllove tooyuo', '2026-03-06 17:59:15', 1, '2026-03-07 23:37:37');
 
 -- --------------------------------------------------------
 
@@ -203,47 +197,7 @@ CREATE TABLE `home_products` (
 --
 
 INSERT INTO `home_products` (`id`, `name`, `description`, `price`, `mrp`, `image`, `brand`, `deleted_by_admin`, `deleted_at`) VALUES
-(2, 'iPhone 16 128 GB: 5G', 'iPhone 16 128 GB: 5G Mobile Phone with Camera Control, A18 Chip and a Big Boost in Battery Life. Works with AirPods; Teal', 25999.00, 78999.00, 'a2.webp', 'Home', 1, NULL),
-(3, 'iPhone 16 Pro Max 256 GB: 5G', 'iPhone 16 Pro Max 256 GB: 5G Mobile Phone with Camera Control, 4K 120 fps Dolby Vision and a Huge Leap in Battery Life. Works with AirPods; Black Titanium', 33999.00, 164999.00, 'a3.webp', 'Home', 1, NULL),
-(5, 'iQOO Z10 5G', 'iQOO Z10 5G (Silver, 8GB RAM, 128GB Stroage) | India\'s Biggest Ever 7300 mAh Battery | Snapdragon 7s Gen 3 Processor | Brightest Quad Curved AMOLED Display in The Segment', 13999.00, 25999.00, '1751118674_20.jpg', 'Home', 1, NULL),
-(6, 'Lava Storm Play 5G', 'Lava Storm Play 5G (Dune Titanium, 6+6*GB RAM, 128GB Storage) | World\'s First MTK D7060 Processor | 500k+ Antutu | LPDDR5 RAM | UFS 3.1 Storage | 50MP AI Camera | 120Hz Refresh Rate | IP64 Protection', 4999.00, 15999.00, '1751118674_21.jpg', 'Home', 0, NULL),
-(7, 'iQOO Z9s 5G', 'iQOO Z9s 5G (Titanium Matte, 8GB RAM, 128GB Storage) | 120 Hz 3D Curved AMOLED Display | 5500 mAh Ultra-Thin Battery | Dimesity 7300 5G Processor | Sony IMX882 OIS Camera with Aura Light', 8999.00, 34999.00, '1751118674_22.jpg', 'Home', 0, NULL),
-(8, 'Samsung Galaxy A35 5G', 'Samsung Galaxy A35 5G (Awesome Lilac, 8GB RAM, 128GB Storage) | Premium Glass Back | 50 MP Main Camera (OIS) | Nightography | IP67 | Corning Gorilla Glass Victus+ | sAMOLED with Vision Booster', 12999.00, 34999.00, '1751118674_23.jpg', 'Home', 0, NULL),
-(9, 'Motorola Edge 5G', 'Motorola Edge 50 Fusion 5G (Hot Pink, 8GB RAM, 128GB Storage)', 8999.00, 23999.00, '1751118674_24.jpg', 'Home', 0, '2026-03-13 21:13:20'),
-(10, 'Samsung Galaxy F15 5G', '16.39 Centimeters (6.5\"Inch) Super AMOLED Display , FHD+ Resolution with 2340 x 1080 Pixels , 16M Colors and 90Hz Refresh Rate', 11999.00, 18999.00, 's1.webp', 'Home', 0, NULL),
-(11, 'Samsung Galaxy S25 Ultra 5G', 'Samsung Galaxy S25 Ultra 5G AI Smartphone (Titanium Whitesilver, 12GB RAM, 256GB Storage), 200MP Camera, S Pen Included, Long Battery Life', 10999.00, 79999.00, 'p2.webp', 'Home', 0, NULL),
-(12, 'Samsung Galaxy S24 Ultra 5G', 'Samsung Galaxy S24 Ultra 5G AI Smartphone (Titanium Gray, 12GB, 256GB Storage) Galaxy S24 Ultra, the ultimate form of Galaxy Ultra with a new titanium exterior and a 17.25cm (6.8\") flat display. It\'s an absolute marvel of design.', 27999.00, 94999.00, 's2.webp', 'Home', 0, NULL),
-(13, 'Samsung Galaxy S24 FE', 'The Samsung Galaxy S24 FE is a premium mid-range phone with a 120Hz AMOLED display, Exynos 2400e processor, a 50MP triple-camera system, and IP68 water resistance..', 4599.00, 2199.00, 'p4.webp', 'Home', 0, NULL),
-(14, 'Samsung Galaxy A35 5G', 'Samsung Galaxy A35 5G (Awesome Iceblue, 8GB RAM, 128GB Storage) with Other OffersBATTERY - Get a massive 5000mAh Lithium-ion Battery (Non-Removable) with C-Type Super Fast Charging (25W Charging Support)', 1399.00, 34999.00, 's3.webp', 'Home', 0, NULL),
-(16, 'Samsung Galaxy Z Flip3 5G', 'Samsung Galaxy Z Flip3 5G (Cream, 8GB RAM, 128GB Storage) with No Cost EMI/Additional Exchange Offers Corning Gorilla Glass Victus+| AnTuTu Score 595K+ | Vapour Cooling Chamber | 6000mAh Battery | 120Hz Super AMOLED Display| Without Charger', 13999.00, 54999.00, 's5.webp', 'Home', 0, NULL),
-(17, 'Xiaomi 15', 'Xiaomi 15 (Black, 12GB RAM, 512GB Storage) 6.36\" 1.5K 120Hz AMOLED display with Ultra slim bexels and 3200nits of peak brightness', 23999.00, 65999.00, 'x5.webp', 'Home', 0, NULL),
-(18, 'Redmi Note 14 5G', 'Redmi Note 14 5G (Mystique White, 6GB RAM 128GB Storage) | Global Debut MTK Dimensity 7025 Ultra | 2100 nits Segment Brightest 120Hz AMOLED | 50MP Sony LYT 600 OIS+EIS Triple Camera', 5999.00, 14999.00, 'x2.webp', 'Home', 0, NULL),
-(19, 'Xiaomi 14 CIVI', 'Xiaomi 14 CIVI (Cruise Blue, 8GB RAM, 256GB Storage) Xiaomi 14 CIVI boots with Xiaomi\'s HyperOS out of the box. HyperOS is based on Android 14', 8999.00, 34999.00, 'x3.webp', 'Home', 0, NULL),
-(20, 'Xiaomi 12 Pro', 'Xiaomi 12 Pro | 5G (Couture Blue, 8GB RAM, 256GB Storage) | Snapdragon 8 Gen 1 | 50+50+50MP Flagship Cameras (OIS) | 10bit 2K+ Curved AMOLED Display | Sound by Harman Kardon', 14999.00, 44999.00, 'x4.webp', 'Home', 0, NULL),
-(21, 'Xiaomi 15 Ultra', 'Xiaomi 15 Ultra (Silver Chrome, 16GB RAM, 512GB Storage) 6.73\" WQHD+ 3200 nits ultra-bright AMOLED display Large 5410mAh High density battery with 90W Hypercharge support IP68 rated and protected by Xiaomi Shield Glass 2.0', 14999.00, 84999.00, 'x5.webp', 'Home', 0, NULL),
-(22, 'Redmi Note 14', 'The Redmi Note 14 is a mid-range smartphone with a 6.67-inch 120Hz AMOLED display, MediaTek Helio G99-Ultra processor, a 108MP camera, and a 5500mAh battery with 33W fast charging.', 8999.00, 21999.00, 'p6.webp', 'Home', 0, NULL),
-(23, 'Redmi 14C', 'The Redmi 14C is a budget smartphone with a 6.88-inch 120Hz HD+ display, MediaTek Helio G81 Ultra processor, a 50MP dual-camera setup, and a 5160mAh battery with 18W fast charging.', 4999.00, 14999.00, 'p7.webp', 'Home', 0, NULL),
-(24, 'OnePlus Nord CE4 Lite 5G', 'OnePlus Nord CE4 Lite 5G (Super Silver, 8GB RAM, 128GB Storage) (Raging Blue, 8GB RAM, 256GB Storage) | Snapdragon 8s Gen 3 Processor 6400mAh Battery Smartphone | Segment\'s Most Stable 90FPS for 5 Hours', 6999.00, 14999.00, 'o2.webp', 'Home', 0, NULL),
-(25, 'OnePlus 13R', 'OnePlus 13R | Smarter with OnePlus AI (12GB RAM, 256GB Storage Nebula Noir) Titanium Whitesilver, 200MP Camera, S Pen Included, Long Battery Life', 4999.00, 14999.00, 'o3.webp', 'Home', 0, NULL),
-(26, 'OnePlus Nord 4 5G', 'OnePlus Nord 4 5G (Obsidian Midnight, 8GB RAM, 256GB Storage) 5G smartphone with a high-refresh-rate display, a powerful processor, and a long-lasting battery for smooth performance.', 12999.00, 24999.00, 'o4.webp', 'Home', 0, NULL),
-(27, 'OnePlus Nord CE4', 'OnePlus Nord CE4 (Dark Chrome, 8GB RAM, 128GB Storage) premium mid-range phone with a 120Hz AMOLED display, Exynos 2400e processor, a 50MP triple-camera system, and IP68 water resistance..', 13999.00, 24999.00, 'o5.webp', 'Home', 0, NULL),
-(28, 'OnePlus Nord 4 5G', 'OnePlus Nord 4 5G (Oasis Green, 8GB RAM, 256GB Storage) high-performance smartphone featuring a 144Hz AMOLED display, Qualcomm Snapdragon 8 Gen 2 processor, a 50MP dual-camera system, and a 5160mAh battery with 120W fast charging.', 16999.00, 41999.00, 'o6.webp', 'Home', 0, NULL),
-(29, 'OnePlus 13', 'OnePlus 13 | Smarter with OnePlus AI (16GB RAM, 512GB Storage Midnight Ocean) 6.67-inch 120Hz AMOLED display, MediaTek Helio G99-Ultra processor, a 108MP camera, and a 5500mAh battery with 33W fast charging.', 18999.00, 44999.00, 'o7.webp', 'Home', 0, NULL),
-(30, 'OnePlus 11 5G', 'OnePlus 11 5G (Eternal Green, 8GB RAM, 128GB Storage) a 6.88-inch 120Hz HD+ display, MediaTek Helio G81 Ultra processor, a 50MP dual-camera setup, and a 5160mAh battery with 18W fast charging.', 19999.00, 44999.00, 'o8.webp', 'Home', 0, NULL),
-(31, 'HP 15, 13th Gen Intel Core i3-1315U', 'HP 15, 13th Gen Intel Core i3-1315U, 8GB DDR4, 512GB SSD, (Win 11, Office 21, Grey, 1.59kg), Anti-Glare, Micro-Edge,15.6-inch(39.6cm), FHD Laptop, Intel UHD Graphics, 1080p FHD Camera, fd0006TU', 18999.00, 44999.00, 'h1.webp', 'Home', 0, NULL),
-(32, 'HP 15, 13th Gen Intel Core i5-1334U', 'HP 15, 13th Gen Intel Core i5-1334U, 16GB DDR4, 512GB SSD, (Win 11, Office 21, Silver, 1.59kg), Anti-Glare, 15.6-inch(39.6cm) FHD Laptop, Iris Xe Graphics, FHD Camera, Backlit KB, fd0316TU/fd0315TU', 23999.00, 74999.00, 'h2.webp', 'Home', 0, NULL),
-(33, 'HP 15s,12th Gen Intel Core i3-1215U', 'HP 15s,12th Gen Intel Core i3-1215U, 8GB DDR4, 512 GB SSD(Win 11, Office 21, Silver, 1.69kg), Anti-Glare, 15.6inch(39.6Cm), FHD Laptop, Intel UHD Graphics, Dual Speakers, HD Camera, fy5006tu', 23999.00, 44999.00, 'h3.webp', 'Home', 0, NULL),
-(34, 'HP 255 Notebook', 'HP 255 Notebook, AMD Athlon Silver 7120U,8GB DDR4, 256GB SSD, 15.6-inch(39.6cm),Anti-Glare, HD Laptop, Radeon Graphics, (Win 11, Silver,1.52kg) G10', 16999.00, 44999.00, 'h4.webp', 'Home', 0, NULL),
-(35, 'HP Laptop 15s, 12th Gen', 'HP Laptop 15s, 12th Gen Intel Core i3-1215U, 15.6-inch (39.6 cm), FHD, 16GB DDR4, 512GB SSD, Intel UHD Graphics, 720p HD Camera, Anti-Glare Screen, Thin & Light (Win 11, Silver, 1.69 kg), fy5004TU', 21999.00, 44999.00, 'h5.webp', 'Home', 0, NULL),
-(36, 'HP Laptop 245 G9 AMD', 'HP Laptop 245 G9 AMD Ryzen 3 3250U Dual Core - (8GB/512GB SSD/AMD Radeon Graphics) Thin and Light Business Laptop/14 (35.56cm)/Silver/1.47 kg', 18999.00, 42999.00, 'h6.webp', 'Home', 0, NULL),
-(37, 'HP 14 AI Laptop', 'HP 14 AI Laptop, Intel Core Ultra 5 125H,12 Tops,16GB DDR5, 512GB SSD, (Win 11, Silver, 1.4 kg) Anti-Glare,14-inch (35.6 cm), FHD, Intel Arc Graphics, FHD Camera, Backlit KB, gr1022TU', 25999.00, 80999.00, 'h7.webp', 'Home', 0, NULL),
-(38, 'Dell Inspiron 3530 Laptop', 'Dell Inspiron 3530 Laptop, 13th Generation Intel Core i7-1355U Processor, 16GB, 512GB, 15.6\" (39.62cm) FHD 120Hz Display, Backlit KB, Windows 11 + MSO\'21, 15 Month McAfee, Silver, Thin & Light-1.62kg', 23999.00, 67999.00, 'd1.webp', 'Home', 0, NULL),
-(39, 'Dell 15 Thin & Light Laptop', 'Dell 15 Thin & Light Laptop, Intel Core i5-1235U Processor/16GB DDR4 + 512GB SSD/Intel UHD Graphics/15.6\" (39.62cm) FHD Display/Win 11 + MSO\'21/15 Month McAfee/Carbon Black/Spill Resistant KB/1.69kg', 28999.00, 68999.00, 'd2.webp', 'Home', 0, NULL),
-(40, 'Dell Latitude 3440', 'Dell Latitude 3440 Intel Core I3 12Th Gen 1215U - (8GB/512 GB SSD/Intel UHD Graphics) Thin and Light Business DOS Laptop/14 HD Display/Grey/1.5 Kg', 19999.00, 65999.00, 'd3.webp', 'Home', 0, NULL),
-(41, 'Dell Inspiron 5440 Laptop', 'Dell Inspiron 5440 Laptop, i5-1334U Processor, 16GB DDR5 + 1TB SSD, 14\" FHD+AG NonTouch 250nits WVA Display w/Comfortview Support, Backlit KB + FPR, Win11 + MSO\'21 + 15 Month McAfee, Ice Blue, 1.54kg', 23999.00, 85999.00, 'd4.webp', 'Home', 0, NULL),
-(42, 'Dell 15 Thin & Light Laptop', 'Dell 15 Thin & Light Laptop, Windows 11 Home, Intel Core i5-1235U Processor, 8GB RAM + 512GB SSD, 15.6\" FHD Window 11 + Mso \'21, 15 Month Mcafee, Spill-Resistant Keyboard, Black, 1.66Kg', 23999.00, 62999.00, 'd5.webp', 'Home', 0, NULL),
-(43, 'Dell {Smartchoice} G15-5530', 'Dell {Smartchoice} G15-5530 Core i5-13450HX| NVIDIA RTX 3050, 6GB (16GB RAM|1TB SSD, FHD|Window 11|MS Office\' 21|15.6\")(39.62cm)|Dark Shadow Grey|2.65Kg|Gaming Laptop', 25999.00, 106999.00, 'd6.webp', 'Home', 0, NULL),
-(44, 'Dell Inspiron 7441 Plus Laptop', 'Dell Inspiron 7441 Plus Laptop, Built-in AI Snapdragon X Plus X1P-64-100 10 Core, 16GB LPDDR5X + 512GB SSD, Qualcomm GPU, 14\"(35.56cm) 16:10 QHD+ Touch 400 nits, Backlit KB + FPR, Ice Blue, 1.4 kg', 35999.00, 153999.00, 'd7.webp', 'Home', 0, NULL);
+(9, 'Motorola Edge 5G', 'Motorola Edge 50 Fusion 5G (Hot Pink, 8GB RAM, 128GB Storage)', 8999.00, 23999.00, '1751118674_24.jpg', 'Home', 0, '2026-03-13 21:13:20');
 
 -- --------------------------------------------------------
 
@@ -304,6 +258,38 @@ INSERT INTO `macbook_products` (`id`, `name`, `description`, `price`, `mrp`, `im
 (6, 'Apple 2025 MacBook Air', 'Apple 2025 MacBook Air (13-inch, Apple M4 chip with 10-core CPU and 8-core GPU, 16GB Unified Memory, 256GB) - Midnight', 33999.00, 153999.00, 'm5.webp', 'Macbook', 0),
 (7, 'Apple 2025 MacBook Air', 'Apple 2025 MacBook Air (13-inch, Apple M4 chip with 10-core CPU and 8-core GPU, 16GB Unified Memory, 256GB) - skyblue', 35999.00, 153999.00, 'm6.webp', 'Macbook', 0),
 (8, 'Apple 2025 MacBook Air', 'Apple 2025 MacBook Air (13-inch, Apple M4 chip with 10-core CPU and 8-core GPU, 16GB Unified Memory, 256GB) - Starlight', 42999.00, 149999.00, 'm7.webp', 'Macbook', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `navbar_labels`
+--
+
+CREATE TABLE `navbar_labels` (
+  `id` int NOT NULL,
+  `label_key` varchar(100) DEFAULT NULL,
+  `label_value` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `navbar_labels`
+--
+
+INSERT INTO `navbar_labels` (`id`, `label_key`, `label_value`) VALUES
+(1, 'mobiles', 'Mobiless99'),
+(2, 'apple', 'Apple66'),
+(3, 'samsung', 'Samsung2'),
+(4, 'xiaomi', 'Xiaomi2222'),
+(5, 'oneplus', 'OnePlus2'),
+(6, 'laptops', 'Laptops33'),
+(7, 'hp', 'HP'),
+(8, 'dell', 'Dell2'),
+(9, 'macbook', 'MacBook'),
+(10, 'headphones', 'Headphones5'),
+(11, 'boat', 'boAT'),
+(12, 'oneplusbud', 'OnePlus'),
+(13, 'boult', 'Boult'),
+(14, 'home_bg', 'default-bg.jpg');
 
 -- --------------------------------------------------------
 
@@ -395,14 +381,9 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `name`, `email`, `phone`, `address`, `payment`, `total`, `created_at`, `deleted_by_user`, `status`, `deleted_at`) VALUES
 (2, 32, 'lmslf', 'harprasadkumar6448@gmail.com', '9803`48249236`-4', 'kqwlkej', 'Cash on Delivery', 23075.00, '2026-03-01 18:28:02', 0, 'Pending', NULL),
 (4, 39, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 80089.00, '2026-03-02 05:27:22', 0, 'Shipped', NULL),
-(5, 34, 'Manoj Gola07', 'harprasadkumar6448@gmail.com', '1234456691', 'sakraya mathura', 'Cash on Delivery', 23050.00, '2026-03-02 07:04:46', 0, 'Pending', NULL),
-(16, 34, 'manoj', 'harprasadkumar6448@gmail.com', '7505324053', 'sakraya', 'UPI', 34068.00, '2026-03-13 07:13:15', 0, 'Pending', NULL),
-(19, 40, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 108874.00, '2026-03-14 07:31:42', 0, 'Pending', NULL),
-(21, 34, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 24078.00, '2026-03-14 08:25:37', 0, 'Pending', NULL),
-(22, 34, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 18703.00, '2026-03-14 08:26:13', 0, 'Pending', NULL),
-(23, 34, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 44104.00, '2026-03-14 08:27:00', 0, 'Pending', NULL),
-(24, 34, 'Manoj Gola07', 'harprasadkumar6448@gmail.com', '7505324053', 'sakraya', 'Cash on Delivery', 14030.00, '2026-03-14 08:48:09', 0, 'Pending', NULL),
-(25, 34, 'Manoj Gola07', 'harprasadkumar6448@gmail.com', '7505324053', 'sakraya', 'Cash on Delivery', 44043.00, '2026-03-14 08:49:09', 0, 'Pending', NULL);
+(5, 34, 'Manoj Gola07', 'harprasadkumar6448@gmail.com', '1234456691', 'sakraya mathura', 'Cash on Delivery', 23050.00, '2026-03-02 07:04:46', 0, 'Cancelled', NULL),
+(16, 34, 'manoj', 'harprasadkumar6448@gmail.com', '7505324053', 'sakraya', 'UPI', 34068.00, '2026-03-13 07:13:15', 0, 'Delivered', NULL),
+(19, 40, 'Deepak kumar', 'deepakkumar897986@gmail.com', '08979866218', 'village barhana post kosi kalan teh-chhata mathura', 'Cash on Delivery', 108874.00, '2026-03-14 07:31:42', 0, 'Delivered', NULL);
 
 -- --------------------------------------------------------
 
@@ -439,14 +420,7 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_key`, `product_name`, `pri
 (30, 19, 'oneplus_5', 'OnePlus Nord CE4', 13999.00, 1, 'o5.webp', 83.00, 14082.00),
 (31, 19, 'hp_5', 'HP 255 Notebook', 16999.00, 1, 'h4.webp', 35.00, 17034.00),
 (32, 19, 'boat_5', 'boAt Bassheads 900 Pro', 499.00, 1, 'b4.webp', 94.00, 593.00),
-(33, 19, 'home_6', 'Lava Storm Play 5G', 4999.00, 1, '1751118674_21.jpg', 94.00, 5093.00),
-(36, 21, 'dell_5', 'Dell Inspiron 5440 Laptop', 23999.00, 1, 'd4.webp', 79.00, 24078.00),
-(37, 22, 'home_5', 'iQOO Z10 5G', 13999.00, 1, '1751118674_20.jpg', 78.00, 14077.00),
-(38, 22, 'samsung_8', 'Samsung Galaxy S24 FE', 4599.00, 1, 'p4.webp', 27.00, 4626.00),
-(39, 23, 'home_6', 'Lava Storm Play 5G', 4999.00, 2, '1751118674_21.jpg', 96.00, 10094.00),
-(40, 23, 'home_3', 'iPhone 16 Pro Max 256 GB: 5G', 33999.00, 1, 'a3.webp', 11.00, 34010.00),
-(41, 24, 'home_5', 'iQOO Z10 5G', 13999.00, 1, '1751118674_20.jpg', 31.00, 14030.00),
-(42, 25, 'macbook_5', 'Apple 2024 MacBook Air', 43999.00, 1, 'm4.webp', 44.00, 44043.00);
+(33, 19, 'home_6', 'Lava Storm Play 5G', 4999.00, 1, '1751118674_21.jpg', 94.00, 5093.00);
 
 -- --------------------------------------------------------
 
@@ -553,7 +527,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `created_at`, `profile_image`, `mobile`) VALUES
-(27, 'Deepak', 'kumar', 'deepak@gmail.com', '$2y$10$RmMkmV565b9vPpPu0zey4ee5hXH5fF53zyjSvDxDlW2fQ7fPmB1FG', 'user', '2026-02-25 17:42:53', NULL, NULL),
+(27, 'Deepak', 'kumar', 'deepak@gmail.com', '$2y$10$NUwaOZth8waLib0gCF.53OF4Qr0ybJtizOEfT2FuQpNlFFsWwjOaq', 'user', '2026-02-25 17:42:53', NULL, NULL),
 (32, 'manoj', 'kumar', 'manojkumar@gmail.com', '$2y$10$BANCrlj490DhjsAfHx3tr.IwU6RWVmIu2uJiI7WCL1xz85dDGxj8i', 'user', '2026-02-25 17:42:53', NULL, NULL),
 (33, 'Manoj', 'Gola07', 'harprasadkumar6448@gmail.com', '$2y$10$u8dc3RUn3tQJ2/HnPuQdHuUahN1gjto7jsRF2bpasrkEdY3CupNN2', 'user', '2026-02-25 17:42:53', NULL, NULL),
 (34, 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$X6QOF7w2JVVCxbGBw61OjewVX3gG8c/ieskS4/d3PC4RdNfQ3Y6pC', 'admin', '2026-02-25 17:49:21', 'user_34_1774443675.png', NULL),
@@ -561,7 +535,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role
 (39, 'user-2', 'kumar', 'user-2@gmail.com', '$2y$10$Bu3onMo7arBRE2d5MaXlreYdWEXH2fQo0JN9oTz8oCb5c1zajGujm', 'user', '2026-03-02 05:13:56', NULL, NULL),
 (40, 'user-3', 'kumar', 'user-3@gmail.com', '$2y$10$tdR.n/CpdgT5SdIY5CTx2OE2vpIWPu0OpmZYm6Y0H0wm8VZK2CcFy', 'user', '2026-03-14 07:19:33', 'user_40_1774445567.png', NULL),
 (43, 'user6', 'u6', 'user6@gmail.com', '$2y$10$LshHnAkLJ1iOpSEGr/ynm.tXsU4qvY5Mfx.763FIOdNTf7vATU8d2', 'user', '2026-03-14 09:56:32', NULL, NULL),
-(45, 'Deepak', 'kumar', 'Deepak-admin@gmail.com', '$2y$10$myrxoih32vj5g27Edddk3uTla6pFXlDkNbVEwQhcTcil0AVv9BHEW', 'admin', '2026-05-02 14:53:05', NULL, '8979866218'),
+(45, 'Deepak', 'kumar', 'Deepak-admin@gmail.com', '$2y$10$myrxoih32vj5g27Edddk3uTla6pFXlDkNbVEwQhcTcil0AVv9BHEW', 'admin', '2026-05-02 14:53:05', 'user_45_1777799175.png', '8979866218'),
 (46, 'Manoj', 'gola', 'Manoj-admin@gmail.com', '$2y$10$zuTIBPClyGftPXsIh2AQIOvD8xzy2qCNIHVKwGZp9z5oA513E2UKq', 'admin', '2026-05-02 14:53:55', NULL, '7505324053');
 
 -- --------------------------------------------------------
@@ -646,6 +620,13 @@ ALTER TABLE `hp_products`
 --
 ALTER TABLE `macbook_products`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `navbar_labels`
+--
+ALTER TABLE `navbar_labels`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `label_key` (`label_key`);
 
 --
 -- Indexes for table `oneplusbud_products`
@@ -759,6 +740,12 @@ ALTER TABLE `macbook_products`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `navbar_labels`
+--
+ALTER TABLE `navbar_labels`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `oneplusbud_products`
 --
 ALTER TABLE `oneplusbud_products`
@@ -774,19 +761,19 @@ ALTER TABLE `oneplus_products`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `products`

@@ -259,6 +259,13 @@ display:none;
       <div class="alert alert-success">Products restored successfully.</div>
     <?php endif; ?>
 
+    <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+
+<div class="alert alert-danger">
+Products permanently deleted successfully.
+</div>
+
+<?php endif; ?>
     <form method="POST" action="restore_selected_products.php" onsubmit="return confirmRestore();">
       <input type="hidden" name="selected_ids" id="selected_ids">
 
@@ -273,6 +280,14 @@ display:none;
           <button type="submit" id="restoreBtn" class="btn btn-success btn-sm">
             <i class="fa-solid fa-rotate-left me-1"></i> Restore Selected
           </button>
+          <button type="submit"
+        formaction="delete_permanent_products.php"
+        onclick="return confirmDeletePermanent();"
+        id="deletePermanentBtn"
+        class="btn btn-danger btn-sm">
+<i class="fa-solid fa-trash me-1"></i>
+Delete Permanent
+</button>
         </div>
       </div>
 
@@ -339,6 +354,10 @@ function updateSelected() {
   document.getElementById('selectedCount').textContent = selected.length;
   document.getElementById('selected_ids').value = selected.join(',');
   document.getElementById('restoreBtn').style.display = selected.length > 0 ? 'inline-block' : 'none';
+  selected.length > 0 ? 'inline-block' : 'none';
+
+document.getElementById('deletePermanentBtn').style.display =
+selected.length > 0 ? 'inline-block' : 'none';
 
   const main = document.getElementById('mainCheckbox');
   main.checked = (checkboxes.length > 0 && selected.length === checkboxes.length);
@@ -361,6 +380,16 @@ function confirmRestore() {
     return false;
   }
   return confirm('Are you sure you want to restore selected products?');
+}
+function confirmDeletePermanent() {
+  const count = parseInt(document.getElementById('selectedCount').textContent, 10);
+
+  if (count === 0) {
+    alert('Please select at least one product.');
+    return false;
+  }
+
+  return confirm('Selected products will be permanently deleted from database. Continue?');
 }
 </script>
 
